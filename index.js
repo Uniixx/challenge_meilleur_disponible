@@ -8,12 +8,12 @@ class Shape {
         this.height = heigth;
         this.type = type;
     }
-    setChar({ opt1, opt2, opt3 }) {
-        if (opt1)
+    setChar({ isEdge, isDiagonal, isX }) {
+        if (isEdge)
             return 'x';
-        if (this.type === 2 && opt2)
+        if (this.type === 2 && isDiagonal)
             return 'x';
-        if (this.type === 3 && opt3)
+        if (this.type === 3 && isX)
             return 'x';
         return '-';
     }
@@ -24,9 +24,9 @@ class Shape {
             for (j = 1; j <= this.width; j++) {
                 char += this.setChar(
                     {
-                        opt1: i === 1 || i === this.height || j === this.width || j === 1,
-                        opt2: i === j,
-                        opt3: i === j || j === this.height - i + 1
+                        isEdge: i === 1 || i === this.height || j === this.width || j === 1,
+                        isDiagonal: i === j,
+                        isX: i === j || j === this.height - i + 1
                     },
                     this.type
                 );
